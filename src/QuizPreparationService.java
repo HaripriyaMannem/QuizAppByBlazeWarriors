@@ -7,4 +7,12 @@ public class QuizPreparationService {
     {
     }
 
+    public void prepareQuiz(){
+
+    }
+
+    public void playQuiz(){
+
+    }
+
 }
