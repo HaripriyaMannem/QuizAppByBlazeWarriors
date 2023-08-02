@@ -12,8 +12,5 @@ public class QuizApp {
 
         RoleService roleService = new RoleService();
         roleService.validateRole();
-
-
-
     }
 }

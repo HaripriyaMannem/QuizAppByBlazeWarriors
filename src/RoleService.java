@@ -4,10 +4,6 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class RoleService {
-
-
-    QuizPreparationService quizPreparationService = new QuizPreparationService();
-
     public RoleService() {
         System.out.println("Welcome to the Quiz App By BlazeWarriors!!!");
     }
@@ -17,9 +13,11 @@ public class RoleService {
         Scanner sc = new Scanner(System.in);
         String role = sc.nextLine().trim();
         if(role.equalsIgnoreCase("Trainer")){
+            QuizPreparationService quizPreparationService = new QuizPreparationService();
             quizPreparationService.prepareQuiz();
         } else if(role.equalsIgnoreCase("Student")){
-            quizPreparationService.playQuiz();
+            QuizPlayService quizPlayService = new QuizPlayService();
+            quizPlayService.playQuiz();
         } else{
             System.out.println("QuizApp By BlazeWarriors not supporting given role, Thank you!");
             validateRole();

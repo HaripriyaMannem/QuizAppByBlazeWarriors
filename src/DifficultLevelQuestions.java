@@ -1,12 +1,16 @@
 public class DifficultLevelQuestions extends Questions{
 
-    private final String level;
+    private String level;
 
-    public DifficultLevelQuestions(){
-        this.level = "Medium";
+    public DifficultLevelQuestions(int id, String question, String opt1, String opt2, String opt3, String opt4, String answer) {
+        super(id, question, opt1, opt2, opt3, opt4, answer);
     }
 
     public String getLevel() {
         return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = QuizApp.quizLevels[2];
     }
 }

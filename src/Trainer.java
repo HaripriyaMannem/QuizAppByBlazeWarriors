@@ -5,7 +5,7 @@ public class Trainer {
     private final int noOfQuestions;
 
     public Trainer() {
-        this.noOfQuestions = 15;
+        this.noOfQuestions = 10;
     }
 
     public String getName() {
