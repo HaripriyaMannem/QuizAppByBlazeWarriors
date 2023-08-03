@@ -1,4 +1,4 @@
-public class MediumLevelQuestions extends Questions{
+public class MediumLevelQuestions extends Questions {
 
     private  String level;
 

@@ -1,4 +1,4 @@
-public class DifficultLevelQuestions extends Questions{
+public class DifficultLevelQuestions extends Questions {
 
     private String level;
 
