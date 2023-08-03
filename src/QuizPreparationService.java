@@ -2,65 +2,79 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class QuizPreparationService {
-
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
     String easyLevel = QuizApp.quizLevels[0];
     String medLevel = QuizApp.quizLevels[1];
     String diffLevel = QuizApp.quizLevels[2];
-    Trainer trainer = new Trainer();
 
-    public void prepareQuiz(){
+    public void prepareQuiz(Trainer trainer){
         String quizLevels;
         String levels;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter your Name:");
-        String name = sc.nextLine().trim();
-        trainer.setName(name);
-        System.out.println("Please enter Quiz Title:");
-        String quizTitle = sc.nextLine().trim();
-        trainer.setQuizTitle(quizTitle);
-        System.out.println("Please enter which level"+ Arrays.toString(QuizApp.quizLevels) +" of Questions to be prepared:");
+        System.out.println("Please enter which level"+ ANSI_YELLOW + Arrays.toString(QuizApp.quizLevels) + RoleService.ANSI_RESET+" of Questions are you going to prepare:");
         String quizLevelType = sc.nextLine().trim();
         levels = quizLevelType;
         trainer.setQuizLevelType(quizLevelType);
-        System.out.println("Press Y/N to prepare Questions for level: " + trainer.getQuizLevelType());
-        String status = sc.nextLine().trim();
-        if (status.equalsIgnoreCase("Y")) {
-            //Display Questions According to level Type
-            displayQuestions(trainer.getQuizLevelType());
-            System.out.println(trainer.getNoOfQuestions() + " Questions Prepared Successfully on " + trainer.getQuizTitle() + " for " + trainer.getQuizLevelType() + " Level by "+ trainer.getName());
-            quizLevels = verifyQuizPreparedOrNot(levels);
-            System.out.println("Please enter which level "+ quizLevels + " of Questions to be prepared next:");
-            String quizLevelType2 = sc.nextLine().trim();
-            levels = levels.concat(quizLevelType2);
-            trainer.setQuizLevelType(quizLevelType2);
-            System.out.println("Press Y/N to prepare Questions for level: " + trainer.getQuizLevelType());
-            String status1 = sc.nextLine().trim();
-            if (status1.equalsIgnoreCase("Y")){
+        quizLevels = verifyQuizPreparedOrNot(levels);
+        if(!quizLevels.equalsIgnoreCase("NA")){
+            System.out.println("Enter " + ANSI_YELLOW + "Y/N"+ RoleService.ANSI_RESET  +" to prepare Questions for level: " + ANSI_YELLOW + convertFirstCharToUppercase(trainer.getQuizLevelType()) + RoleService.ANSI_RESET);
+            String status = sc.nextLine().trim();
+            if (status.equalsIgnoreCase("Y")) {
                 //Display Questions According to level Type
                 displayQuestions(trainer.getQuizLevelType());
-                System.out.println(trainer.getNoOfQuestions() + " Questions Prepared Successfully on " + trainer.getQuizTitle() + " for " + trainer.getQuizLevelType() + " Level by "+ trainer.getName());
+                System.out.println(ANSI_GREEN + trainer.getNoOfQuestions() + " Questions Prepared Successfully on " + convertFirstCharToUppercase(trainer.getQuizTitle()) + " for " + convertFirstCharToUppercase(trainer.getQuizLevelType()) + " Level by "+ convertFirstCharToUppercase(trainer.getName())+"." + RoleService.ANSI_RESET);
+                System.out.println("Please enter which level "+ ANSI_YELLOW  +quizLevels + RoleService.ANSI_RESET +" of Questions to be prepared next:");
+                String quizLevelType2 = sc.nextLine().trim();
+                levels = levels.concat(quizLevelType2);
                 quizLevels = verifyQuizPreparedOrNot(levels);
-                System.out.println("Please enter which level "+ quizLevels + " of Questions to be prepared next:");
-                String quizLevelType3 = sc.nextLine().trim();
-                trainer.setQuizLevelType(quizLevelType3);
-                System.out.println("Press Y/N to prepare Questions for level: " + trainer.getQuizLevelType());
-                String status2 = sc.nextLine().trim();
-                if (status2.equalsIgnoreCase("Y")){
-                    //Display Questions According to level Type
-                    displayQuestions(trainer.getQuizLevelType());
-                    System.out.println(trainer.getNoOfQuestions() + " Questions Prepared Successfully on " + trainer.getQuizTitle() + " for " + trainer.getQuizLevelType() + " Level by "+ trainer.getName());
-                    System.out.println("Hurray!!! "+ trainer.getName() + " you have done with the quiz preparation. Good job.");
+                trainer.setQuizLevelType(quizLevelType2);
+                if(!quizLevels.equalsIgnoreCase("NA")){
+                    System.out.println("Enter " + ANSI_YELLOW + "Y/N"+ RoleService.ANSI_RESET  +" to prepare Questions for level: " + ANSI_YELLOW + convertFirstCharToUppercase(trainer.getQuizLevelType()) + RoleService.ANSI_RESET);
+                    String status1 = sc.nextLine().trim();
+                    if (status1.equalsIgnoreCase("Y")){
+                        //Display Questions According to level Type
+                        displayQuestions(trainer.getQuizLevelType());
+                        System.out.println(ANSI_GREEN + trainer.getNoOfQuestions() + " Questions Prepared Successfully on " + convertFirstCharToUppercase(trainer.getQuizTitle()) + " for " + convertFirstCharToUppercase(trainer.getQuizLevelType()) + " Level by "+ convertFirstCharToUppercase(trainer.getName())+ "." + RoleService.ANSI_RESET);
+                        System.out.println("Please enter which level "+ quizLevels + " of Questions to be prepared next:");
+                        String quizLevelType3 = sc.nextLine().trim();
+                        trainer.setQuizLevelType(quizLevelType3);
+                        quizLevels = verifyQuizPreparedOrNot(trainer.getQuizLevelType());
+                        if(!quizLevels.equalsIgnoreCase("NA")){
+                            System.out.println("Enter " + ANSI_YELLOW + "Y/N"+ RoleService.ANSI_RESET  +" to prepare Questions for level: " + ANSI_YELLOW + convertFirstCharToUppercase(trainer.getQuizLevelType()) + RoleService.ANSI_RESET);
+                            String status2 = sc.nextLine().trim();
+                            if (status2.equalsIgnoreCase("Y")){
+                                //Display Questions According to level Type
+                                displayQuestions(trainer.getQuizLevelType());
+                                System.out.println(ANSI_GREEN + trainer.getNoOfQuestions() + " Questions Prepared Successfully on " + convertFirstCharToUppercase(trainer.getQuizTitle()) + " for " + convertFirstCharToUppercase(trainer.getQuizLevelType()) + " Level by "+ convertFirstCharToUppercase(trainer.getName()) + "."+ RoleService.ANSI_RESET);
+                                System.out.println(ANSI_BLUE + "Hurray!!! "+ convertFirstCharToUppercase(trainer.getName()) + " you have done with the quiz preparation. Good job." + RoleService.ANSI_RESET);
+                            }
+                            else{
+                                System.out.println(ANSI_PURPLE+ convertFirstCharToUppercase(trainer.getName())+", hope you had a great time. Thanks for visiting QuizApp by Blaze Warriors!!!"+ RoleService.ANSI_RESET);
+                            }
+                        }
+                        else{
+                            System.out.println(RoleService.ANSI_RED+ "Oops!!! Quiz Level type is not valid" + RoleService.ANSI_RESET);
+                            prepareQuiz(trainer);
+                        }
+                    } else{
+                        System.out.println(ANSI_PURPLE+ convertFirstCharToUppercase(trainer.getName())+", hope you had a great time. Thanks for visiting QuizApp by Blaze Warriors!!!"+ RoleService.ANSI_RESET);
+                    }
                 }
                 else{
-                    System.out.println(trainer.getName()+", hope you had a great time. Thanks for visiting QuizApp by Blaze Warriors!!!");
+                    System.out.println(RoleService.ANSI_RED+ "Oops!!! Quiz Level type is not valid" + RoleService.ANSI_RESET);
+                    prepareQuiz(trainer);
                 }
-            } else{
-                System.out.println(trainer.getName()+", hope you had a great time. Thanks for visiting QuizApp by Blaze Warriors!!!");
+            }else{
+                System.out.println(ANSI_PURPLE+ convertFirstCharToUppercase(trainer.getName())+", hope you had a great time. Thanks for visiting QuizApp by Blaze Warriors!!!"+ RoleService.ANSI_RESET);
             }
-        } else{
-            System.out.println(trainer.getName()+", hope you had a great time. Thanks for visiting QuizApp by Blaze Warriors!!!");
         }
-
+        else{
+            System.out.println(RoleService.ANSI_RED+ "Oops!!! Quiz Level type is not valid" + RoleService.ANSI_RESET);
+            prepareQuiz(trainer);
+        }
     }
 
     private String verifyQuizPreparedOrNot(String quizLevels){
@@ -116,9 +130,6 @@ public class QuizPreparationService {
                 System.out.println(question.toString());
             }
         }
-        else{
-            System.out.println("Oops!!! Quiz Level type is not valid");
-        }
     }
 
     public EasyLevelQuestions[] prepareEasyQuestions(){
@@ -155,5 +166,9 @@ public class QuizPreparationService {
         difficultLevelQuestions[4] =new DifficultLevelQuestions(5,"Identify Relational Operators in Java", "a) ><", "b) &&", "c) +-", "d) ?:", "a");
 
         return difficultLevelQuestions;
+    }
+
+    public String convertFirstCharToUppercase(String source){
+        return source.substring(0, 1).toUpperCase() + source.substring(1);
     }
 }

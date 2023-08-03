@@ -1,85 +1,88 @@
 public class QuizScoreService {
 
     QuizPreparationService quizPreparationService = new QuizPreparationService();
-
     Score score = new Score();
     Student student = new Student();
+    int noOfEasyCorrectAnswers = 0;
+    int noOfEasyWrongAnswers = 0;
+    int noOfMedCorrectAnswers = 0;
+    int noOfMedWrongAnswers = 0;
+    int noOfDiffCorrectAnswers = 0;
+    int noOfDiffWrongAnswers = 0;
 
 
-    public int calcRealTimeScoreForEasyLevel(int questionId, String correctAnswer, String quizLevel){
+    public Score calcRealTimeScoreForEasyLevel(int questionId, String correctAnswer, String quizLevel){
 
-        int noOfCorrectAnswers = 0;
-        int noOfWrongAnswers = 0;
+
         int easyLevelQuizScore;
         if(quizLevel.equalsIgnoreCase(QuizApp.quizLevels[0])) {
             EasyLevelQuestions[] easyLevelQuestions = quizPreparationService.prepareEasyQuestions();
             String actualCorrectAnswer = easyLevelQuestions[questionId-1].getAnswer();
             if (actualCorrectAnswer.equalsIgnoreCase(correctAnswer)) {
-                noOfCorrectAnswers++;
-                score.setNoOfCorrectAnswersEasyLevel(noOfCorrectAnswers);
+                noOfEasyCorrectAnswers++;
+                score.setNoOfCorrectAnswersEasyLevel(noOfEasyCorrectAnswers);
+                System.out.println("correct answer count: " + score.getNoOfCorrectAnswersEasyLevel());
                 System.out.println("Correct Answer");
             }
             else {
-                noOfWrongAnswers++;
-                score.setNoOfWrongAnswersEasyLevel(noOfWrongAnswers);
+                noOfEasyWrongAnswers++;
+                score.setNoOfWrongAnswersEasyLevel(noOfEasyWrongAnswers);
                 System.out.println("Wrong Answer");
                 System.out.println("Correct Answer is: " + actualCorrectAnswer);
             }
         }
-        easyLevelQuizScore = calculateScore(noOfCorrectAnswers, noOfWrongAnswers);
+        easyLevelQuizScore = calculateScore(noOfEasyCorrectAnswers, noOfEasyWrongAnswers);
         score.setEasyLevelQuizScore(easyLevelQuizScore);
         student.setEasyLevelPlayed(true);
-        return easyLevelQuizScore;
+        return score;
     }
 
-    public int calcRealTimeScoreForMedLevel(int questionId, String correctAnswer, String quizLevel){
-        int noOfCorrectAnswers = 0;
-        int noOfWrongAnswers = 0;
+    public Score calcRealTimeScoreForMedLevel(int questionId, String correctAnswer, String quizLevel){
+
         int medLevelQuizScore;
         if(quizLevel.equalsIgnoreCase(QuizApp.quizLevels[1])) {
             MediumLevelQuestions[] mediumLevelQuestions = quizPreparationService.prepareMedQuestions();
             String actualCorrectAnswer = mediumLevelQuestions[questionId-1].getAnswer();
             if (actualCorrectAnswer.equalsIgnoreCase(correctAnswer)) {
-                noOfCorrectAnswers++;
-                score.setNoOfCorrectAnswersMedLevel(noOfCorrectAnswers);
+                noOfMedCorrectAnswers++;
+                score.setNoOfCorrectAnswersMedLevel(noOfMedCorrectAnswers);
                 System.out.println("Correct Answer");
             }
             else {
-                noOfWrongAnswers++;
-                score.setNoOfWrongAnswersMedLevel(noOfWrongAnswers);
+                noOfMedWrongAnswers++;
+                score.setNoOfWrongAnswersMedLevel(noOfMedWrongAnswers);
                 System.out.println("Wrong Answer");
                 System.out.println("Correct Answer is: " + actualCorrectAnswer);
             }
         }
-        medLevelQuizScore = calculateScore(noOfCorrectAnswers, noOfWrongAnswers);
+        medLevelQuizScore = calculateScore(noOfMedCorrectAnswers, noOfMedWrongAnswers);
         score.setMedLevelQuizScore(medLevelQuizScore);
         student.setMedLevelPlayed(true);
-        return medLevelQuizScore;
+        return score;
     }
 
-    public int calcRealTimeScoreForDiffLevel(int questionId, String correctAnswer, String quizLevel){
-        int noOfCorrectAnswers = 0;
-        int noOfWrongAnswers = 0;
+    public Score calcRealTimeScoreForDiffLevel(int questionId, String correctAnswer, String quizLevel){
+
         int diffLevelQuizScore;
         if(quizLevel.equalsIgnoreCase(QuizApp.quizLevels[2])) {
             DifficultLevelQuestions[] difficultLevelQuestions = quizPreparationService.prepareDiffQuestions();
             String actualCorrectAnswer = difficultLevelQuestions[questionId-1].getAnswer();
             if (actualCorrectAnswer.equalsIgnoreCase(correctAnswer)) {
-                noOfCorrectAnswers++;
-                score.setNoOfCorrectAnswersDiffLevel(noOfCorrectAnswers);
+                noOfDiffCorrectAnswers++;
+                score.setNoOfCorrectAnswersDiffLevel(noOfDiffCorrectAnswers);
                 System.out.println("Correct Answer");
             }
             else {
-                noOfWrongAnswers++;
-                score.setNoOfWrongAnswersDiffLevel(noOfWrongAnswers);
+                noOfDiffWrongAnswers++;
+                score.setNoOfWrongAnswersDiffLevel(noOfDiffWrongAnswers);
                 System.out.println("Wrong Answer");
                 System.out.println("Correct Answer is: " +actualCorrectAnswer);
             }
         }
-        diffLevelQuizScore = calculateScore(noOfCorrectAnswers, noOfWrongAnswers);
+        diffLevelQuizScore = calculateScore(noOfDiffCorrectAnswers, noOfDiffWrongAnswers);
         score.setDiffLevelQuizScore(diffLevelQuizScore);
         student.setDiffLevelPlayed(true);
-        return diffLevelQuizScore;
+        return score;
     }
 
 
