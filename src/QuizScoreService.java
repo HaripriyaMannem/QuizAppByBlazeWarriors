@@ -10,7 +10,6 @@ public class QuizScoreService {
     int noOfDiffCorrectAnswers = 0;
     int noOfDiffWrongAnswers = 0;
 
-
     public Score calcRealTimeScoreForEasyLevel(int questionId, String correctAnswer, String quizLevel){
 
 
@@ -21,14 +20,13 @@ public class QuizScoreService {
             if (actualCorrectAnswer.equalsIgnoreCase(correctAnswer)) {
                 noOfEasyCorrectAnswers++;
                 score.setNoOfCorrectAnswersEasyLevel(noOfEasyCorrectAnswers);
-                System.out.println("correct answer count: " + score.getNoOfCorrectAnswersEasyLevel());
-                System.out.println("Correct Answer");
+                System.out.println(QuizApp.GREEN_BOLD_BRIGHT + "Correct Answer" + RoleService.ANSI_RESET);
             }
             else {
                 noOfEasyWrongAnswers++;
                 score.setNoOfWrongAnswersEasyLevel(noOfEasyWrongAnswers);
-                System.out.println("Wrong Answer");
-                System.out.println("Correct Answer is: " + actualCorrectAnswer);
+                System.out.println(RoleService.ANSI_RED + "Wrong Answer" + RoleService.ANSI_RESET);
+                System.out.println(QuizApp.GREEN_BOLD_BRIGHT + "Correct Answer is: " + actualCorrectAnswer + RoleService.ANSI_RESET);
             }
         }
         easyLevelQuizScore = calculateScore(noOfEasyCorrectAnswers, noOfEasyWrongAnswers);
@@ -46,13 +44,13 @@ public class QuizScoreService {
             if (actualCorrectAnswer.equalsIgnoreCase(correctAnswer)) {
                 noOfMedCorrectAnswers++;
                 score.setNoOfCorrectAnswersMedLevel(noOfMedCorrectAnswers);
-                System.out.println("Correct Answer");
+                System.out.println(QuizApp.GREEN_BOLD_BRIGHT + "Correct Answer" + RoleService.ANSI_RESET);
             }
             else {
                 noOfMedWrongAnswers++;
                 score.setNoOfWrongAnswersMedLevel(noOfMedWrongAnswers);
-                System.out.println("Wrong Answer");
-                System.out.println("Correct Answer is: " + actualCorrectAnswer);
+                System.out.println(RoleService.ANSI_RED + "Wrong Answer" + RoleService.ANSI_RESET);
+                System.out.println(QuizApp.GREEN_BOLD_BRIGHT + "Correct Answer is: " + actualCorrectAnswer + RoleService.ANSI_RESET);
             }
         }
         medLevelQuizScore = calculateScore(noOfMedCorrectAnswers, noOfMedWrongAnswers);
@@ -70,13 +68,13 @@ public class QuizScoreService {
             if (actualCorrectAnswer.equalsIgnoreCase(correctAnswer)) {
                 noOfDiffCorrectAnswers++;
                 score.setNoOfCorrectAnswersDiffLevel(noOfDiffCorrectAnswers);
-                System.out.println("Correct Answer");
+                System.out.println(QuizApp.GREEN_BOLD_BRIGHT + "Correct Answer" + RoleService.ANSI_RESET);
             }
             else {
                 noOfDiffWrongAnswers++;
                 score.setNoOfWrongAnswersDiffLevel(noOfDiffWrongAnswers);
-                System.out.println("Wrong Answer");
-                System.out.println("Correct Answer is: " +actualCorrectAnswer);
+                System.out.println(RoleService.ANSI_RED + "Wrong Answer" + RoleService.ANSI_RESET);
+                System.out.println(QuizApp.GREEN_BOLD_BRIGHT + "Correct Answer is: " + actualCorrectAnswer + RoleService.ANSI_RESET);
             }
         }
         diffLevelQuizScore = calculateScore(noOfDiffCorrectAnswers, noOfDiffWrongAnswers);
@@ -91,13 +89,14 @@ public class QuizScoreService {
     }
 
     public void calculateFinalCumulativeScore(){
-        System.out.println("Summary of the all levels of Quiz played by " + student.getName());
+        System.out.println("**************************************************************");
+        System.out.println(RoleService.ANSI_CYAN + "Summary of the all levels of Quiz played by " + quizPreparationService.convertFirstCharToUppercase(student.getName()) + RoleService.ANSI_RESET);
         int finalScore = score.getEasyLevelQuizScore() + score.getMedLevelQuizScore() + score.getDiffLevelQuizScore();
-        System.out.println("Total Score" + finalScore);
+        System.out.println(QuizApp.GREEN_BOLD_BRIGHT + "Total Score" + finalScore + RoleService.ANSI_RESET);
         if(student.isEasyLevelPlayed() && student.isMedLevelPlayed() && student.isDiffLevelPlayed()){
             if(finalScore == 30){
-                System.out.println("Hurray!!! "+ student.getName() + " you have successfully completed all levels of Quiz");
-                System.out.println("Congratulations "+ student.getName() + " you are awarded by "+ student.getAward());
+                System.out.println(QuizApp.GREEN_BOLD_BRIGHT + "Hurray!!! "+ student.getName() + " you have successfully completed all levels of Quiz" +  RoleService.ANSI_RESET);
+                System.out.println(QuizApp.PURPLE_BOLD_BRIGHT + "Congratulations "+ student.getName() + " you are awarded by "+ student.getAward() +  RoleService.ANSI_RESET);
             }
         }
     }

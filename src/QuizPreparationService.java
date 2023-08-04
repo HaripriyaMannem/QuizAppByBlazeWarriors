@@ -2,10 +2,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class QuizPreparationService {
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
+
     String easyLevel = QuizApp.quizLevels[0];
     String medLevel = QuizApp.quizLevels[1];
     String diffLevel = QuizApp.quizLevels[2];
@@ -14,45 +11,45 @@ public class QuizPreparationService {
         String quizLevels;
         String levels;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter which level"+ ANSI_YELLOW + Arrays.toString(QuizApp.quizLevels) + RoleService.ANSI_RESET+" of Questions are you going to prepare:");
+        System.out.println("Please enter which level"+ QuizApp.YELLOW_BOLD_BRIGHT + Arrays.toString(QuizApp.quizLevels) + RoleService.ANSI_RESET+" of Questions are you going to prepare:");
         String quizLevelType = sc.nextLine().trim();
         levels = quizLevelType;
         trainer.setQuizLevelType(quizLevelType);
         quizLevels = verifyQuizPreparedOrNot(levels);
         if(!quizLevels.equalsIgnoreCase("NA")){
-            System.out.println("Enter " + ANSI_YELLOW + "Y/N"+ RoleService.ANSI_RESET  +" to prepare Questions for level: " + ANSI_YELLOW + convertFirstCharToUppercase(trainer.getQuizLevelType()) + RoleService.ANSI_RESET);
+            System.out.println("Enter " + QuizApp.YELLOW_BOLD_BRIGHT + "Y/N"+ RoleService.ANSI_RESET  +" to prepare Questions for level: " + QuizApp.YELLOW_BOLD_BRIGHT + convertFirstCharToUppercase(trainer.getQuizLevelType()) + RoleService.ANSI_RESET);
             String status = sc.nextLine().trim();
             if (status.equalsIgnoreCase("Y")) {
                 //Display Questions According to level Type
                 displayQuestions(trainer.getQuizLevelType());
-                System.out.println(ANSI_GREEN + trainer.getNoOfQuestions() + " Questions Prepared Successfully on " + convertFirstCharToUppercase(trainer.getQuizTitle()) + " for " + convertFirstCharToUppercase(trainer.getQuizLevelType()) + " Level by "+ convertFirstCharToUppercase(trainer.getName())+"." + RoleService.ANSI_RESET);
-                System.out.println("Please enter which level "+ ANSI_YELLOW  +quizLevels + RoleService.ANSI_RESET +" of Questions to be prepared next:");
+                System.out.println(QuizApp.GREEN_BOLD_BRIGHT + trainer.getNoOfQuestions() + " Questions Prepared Successfully on " + convertFirstCharToUppercase(trainer.getQuizTitle()) + " for " + convertFirstCharToUppercase(trainer.getQuizLevelType()) + " Level by "+ convertFirstCharToUppercase(trainer.getName())+"." + RoleService.ANSI_RESET);
+                System.out.println("Please enter which level "+ QuizApp.YELLOW_BOLD_BRIGHT  +quizLevels + RoleService.ANSI_RESET +" of Questions to be prepared next:");
                 String quizLevelType2 = sc.nextLine().trim();
                 levels = levels.concat(quizLevelType2);
                 quizLevels = verifyQuizPreparedOrNot(levels);
                 trainer.setQuizLevelType(quizLevelType2);
                 if(!quizLevels.equalsIgnoreCase("NA")){
-                    System.out.println("Enter " + ANSI_YELLOW + "Y/N"+ RoleService.ANSI_RESET  +" to prepare Questions for level: " + ANSI_YELLOW + convertFirstCharToUppercase(trainer.getQuizLevelType()) + RoleService.ANSI_RESET);
+                    System.out.println("Enter " + QuizApp.YELLOW_BOLD_BRIGHT + "Y/N"+ RoleService.ANSI_RESET  +" to prepare Questions for level: " + QuizApp.YELLOW_BOLD_BRIGHT + convertFirstCharToUppercase(trainer.getQuizLevelType()) + RoleService.ANSI_RESET);
                     String status1 = sc.nextLine().trim();
                     if (status1.equalsIgnoreCase("Y")){
                         //Display Questions According to level Type
                         displayQuestions(trainer.getQuizLevelType());
-                        System.out.println(ANSI_GREEN + trainer.getNoOfQuestions() + " Questions Prepared Successfully on " + convertFirstCharToUppercase(trainer.getQuizTitle()) + " for " + convertFirstCharToUppercase(trainer.getQuizLevelType()) + " Level by "+ convertFirstCharToUppercase(trainer.getName())+ "." + RoleService.ANSI_RESET);
+                        System.out.println(QuizApp.GREEN_BOLD_BRIGHT + trainer.getNoOfQuestions() + " Questions Prepared Successfully on " + convertFirstCharToUppercase(trainer.getQuizTitle()) + " for " + convertFirstCharToUppercase(trainer.getQuizLevelType()) + " Level by "+ convertFirstCharToUppercase(trainer.getName())+ "." + RoleService.ANSI_RESET);
                         System.out.println("Please enter which level "+ quizLevels + " of Questions to be prepared next:");
                         String quizLevelType3 = sc.nextLine().trim();
                         trainer.setQuizLevelType(quizLevelType3);
                         quizLevels = verifyQuizPreparedOrNot(trainer.getQuizLevelType());
                         if(!quizLevels.equalsIgnoreCase("NA")){
-                            System.out.println("Enter " + ANSI_YELLOW + "Y/N"+ RoleService.ANSI_RESET  +" to prepare Questions for level: " + ANSI_YELLOW + convertFirstCharToUppercase(trainer.getQuizLevelType()) + RoleService.ANSI_RESET);
+                            System.out.println("Enter " + QuizApp.YELLOW_BOLD_BRIGHT + "Y/N"+ RoleService.ANSI_RESET  +" to prepare Questions for level: " + QuizApp.YELLOW_BOLD_BRIGHT + convertFirstCharToUppercase(trainer.getQuizLevelType()) + RoleService.ANSI_RESET);
                             String status2 = sc.nextLine().trim();
                             if (status2.equalsIgnoreCase("Y")){
                                 //Display Questions According to level Type
                                 displayQuestions(trainer.getQuizLevelType());
-                                System.out.println(ANSI_GREEN + trainer.getNoOfQuestions() + " Questions Prepared Successfully on " + convertFirstCharToUppercase(trainer.getQuizTitle()) + " for " + convertFirstCharToUppercase(trainer.getQuizLevelType()) + " Level by "+ convertFirstCharToUppercase(trainer.getName()) + "."+ RoleService.ANSI_RESET);
-                                System.out.println(ANSI_BLUE + "Hurray!!! "+ convertFirstCharToUppercase(trainer.getName()) + " you have done with the quiz preparation. Good job." + RoleService.ANSI_RESET);
+                                System.out.println(QuizApp.GREEN_BOLD_BRIGHT + trainer.getNoOfQuestions() + " Questions Prepared Successfully on " + convertFirstCharToUppercase(trainer.getQuizTitle()) + " for " + convertFirstCharToUppercase(trainer.getQuizLevelType()) + " Level by "+ convertFirstCharToUppercase(trainer.getName()) + "."+ RoleService.ANSI_RESET);
+                                System.out.println(QuizApp.BLUE_BOLD_BRIGHT + "Hurray!!! "+ convertFirstCharToUppercase(trainer.getName()) + " you have done with the quiz preparation. Good job." + RoleService.ANSI_RESET);
                             }
                             else{
-                                System.out.println(ANSI_PURPLE+ convertFirstCharToUppercase(trainer.getName())+", hope you had a great time. Thanks for visiting QuizApp by Blaze Warriors!!!"+ RoleService.ANSI_RESET);
+                                System.out.println(QuizApp.PURPLE_BOLD_BRIGHT+ convertFirstCharToUppercase(trainer.getName())+", hope you had a great time. Thanks for visiting QuizApp by Blaze Warriors!!!"+ RoleService.ANSI_RESET);
                             }
                         }
                         else{
@@ -60,7 +57,7 @@ public class QuizPreparationService {
                             prepareQuiz(trainer);
                         }
                     } else{
-                        System.out.println(ANSI_PURPLE+ convertFirstCharToUppercase(trainer.getName())+", hope you had a great time. Thanks for visiting QuizApp by Blaze Warriors!!!"+ RoleService.ANSI_RESET);
+                        System.out.println(QuizApp.PURPLE_BOLD_BRIGHT+ convertFirstCharToUppercase(trainer.getName())+", hope you had a great time. Thanks for visiting QuizApp by Blaze Warriors!!!"+ RoleService.ANSI_RESET);
                     }
                 }
                 else{
@@ -68,7 +65,7 @@ public class QuizPreparationService {
                     prepareQuiz(trainer);
                 }
             }else{
-                System.out.println(ANSI_PURPLE+ convertFirstCharToUppercase(trainer.getName())+", hope you had a great time. Thanks for visiting QuizApp by Blaze Warriors!!!"+ RoleService.ANSI_RESET);
+                System.out.println(QuizApp.PURPLE_BOLD_BRIGHT+ convertFirstCharToUppercase(trainer.getName())+", hope you had a great time. Thanks for visiting QuizApp by Blaze Warriors!!!"+ RoleService.ANSI_RESET);
             }
         }
         else{
