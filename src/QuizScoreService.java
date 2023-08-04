@@ -88,16 +88,21 @@ public class QuizScoreService {
         return (correctAnswers*2) - (wrongAnswers);
     }
 
-    public void calculateFinalCumulativeScore(){
-        System.out.println("**************************************************************");
-        System.out.println(RoleService.ANSI_CYAN + "Summary of the all levels of Quiz played by " + quizPreparationService.convertFirstCharToUppercase(student.getName()) + RoleService.ANSI_RESET);
+    public void calculateFinalCumulativeScore(String name){
+        System.out.println(RoleService.ANSI_CYAN  + "***********************************************************************");
+        System.out.println(QuizApp.BLUE_BOLD_BRIGHT + "Summary of the all levels of Quiz you played" + RoleService.ANSI_RESET);
         int finalScore = score.getEasyLevelQuizScore() + score.getMedLevelQuizScore() + score.getDiffLevelQuizScore();
-        System.out.println(QuizApp.GREEN_BOLD_BRIGHT + "Total Score" + finalScore + RoleService.ANSI_RESET);
         if(student.isEasyLevelPlayed() && student.isMedLevelPlayed() && student.isDiffLevelPlayed()){
-            if(finalScore == 30){
-                System.out.println(QuizApp.GREEN_BOLD_BRIGHT + "Hurray!!! "+ student.getName() + " you have successfully completed all levels of Quiz" +  RoleService.ANSI_RESET);
-                System.out.println(QuizApp.PURPLE_BOLD_BRIGHT + "Congratulations "+ student.getName() + " you are awarded by "+ student.getAward() +  RoleService.ANSI_RESET);
+            if(finalScore == 30 && score.getNoOfSkippedQuestionsEasyLevel() == 0 && score.getNoOfSkippedQuestionsMedLevel() == 0 && score.getNoOfSkippedQuestionsDiffLevel()== 0){
+                System.out.println(QuizApp.YELLOW_BOLD_BRIGHT + quizPreparationService.convertFirstCharToUppercase(name) + " you have answered all questions correctly. Total Score is " + finalScore + "/30" + RoleService.ANSI_RESET);
+                System.out.println(QuizApp.GREEN_BOLD_BRIGHT + "Hurray!!! you have successfully completed all levels of Quiz" +  RoleService.ANSI_RESET);
+                System.out.println(QuizApp.PURPLE_BOLD_BRIGHT + "Congratulations!!! you are awarded by Blaze Warrior!!" +  RoleService.ANSI_RESET);
             }
         }
+        else{
+            System.out.println(QuizApp.YELLOW_BOLD_BRIGHT + "Well played " + quizPreparationService.convertFirstCharToUppercase(name) + " your total score is " + finalScore + "/30"+ RoleService.ANSI_RESET);
+            System.out.println(QuizApp.PURPLE_BOLD_BRIGHT + " " +  RoleService.ANSI_RESET);
+        }
+        System.out.println(RoleService.ANSI_CYAN  +"***************************************************************************" + RoleService.ANSI_RESET);
     }
 }

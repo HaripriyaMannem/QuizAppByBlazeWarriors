@@ -131,36 +131,51 @@ public class QuizPreparationService {
 
     public EasyLevelQuestions[] prepareEasyQuestions(){
 
-        EasyLevelQuestions[] easyLevelQuestions = new EasyLevelQuestions[5];
-        easyLevelQuestions[0] =new EasyLevelQuestions(1,"In Java default real number is", "a) float", "b) int", "c) double", "d) long", "c");
-        easyLevelQuestions[1] =new EasyLevelQuestions(2,"What is the ASCII code of G in Java", "a) 65", "b) 75", "c) 61", "d) 71", "d");
+        EasyLevelQuestions[] easyLevelQuestions = new EasyLevelQuestions[10];
+        easyLevelQuestions[0] =new EasyLevelQuestions(1,"In Java default real number is?", "a) float", "b) int", "c) double", "d) long", "c");
+        easyLevelQuestions[1] =new EasyLevelQuestions(2,"What is the ASCII code of G in Java?", "a) 65", "b) 75", "c) 61", "d) 71", "d");
         easyLevelQuestions[2] =new EasyLevelQuestions(3,"In Java float number should prefix with f?", "a) true", "b) false", "", "", "a");
-        easyLevelQuestions[3] =new EasyLevelQuestions(4,"What is the correct option for method naming in Java", "a) 1methodName", "b) _1methodName&", "c) _methodName$", "d) MethodName", "c");
-        easyLevelQuestions[4] =new EasyLevelQuestions(5,"Identify Relational Operators in Java", "a) ><", "b) &&", "c) +-", "d) ?:", "a");
+        easyLevelQuestions[3] =new EasyLevelQuestions(4,"What is the correct option for method naming in Java?", "a) 1methodName", "b) _1methodName&", "c) _methodName$", "d) MethodName", "c");
+        easyLevelQuestions[4] =new EasyLevelQuestions(5,"Identify Relational Operators in Java?", "a) ><", "b) &&", "c) +-", "d) ?:", "a");
+        easyLevelQuestions[5] =new EasyLevelQuestions(6,"If condition is true or not on which loop at least one time body will execute?", "a) for", "b) while", "c) do while", "d) for-each", "c");
+        easyLevelQuestions[6] =new EasyLevelQuestions(7,"What are the variables which are declared at class level?", "a) local", "b) static", "c) instance", "d) method", "c");
+        easyLevelQuestions[7] =new EasyLevelQuestions(8,"Which of the variables memory allocated in stack", "a) static", "b) instance", "c) method", "d) none of the above", "a");
+        easyLevelQuestions[8] =new EasyLevelQuestions(9,"Who's job is to collect reference less objects in heap memory", "a) collectors", "b) memory refresh", "c) garbage collector", "d) garbage refresh", "c");
+        easyLevelQuestions[9] =new EasyLevelQuestions(10,"Which operator is used to create Object?", "a) new", "b) create", "c) object", "d) init", "a");
 
         return easyLevelQuestions;
     }
 
     public MediumLevelQuestions[] prepareMedQuestions(){
 
-        MediumLevelQuestions[] mediumLevelQuestions = new MediumLevelQuestions[5];
-        mediumLevelQuestions[0] =new MediumLevelQuestions(1,"In Java default real number is", "a) float", "b) int", "c) double", "d) long", "c");
-        mediumLevelQuestions[1] =new MediumLevelQuestions(2,"What is the ASCII code of G in Java", "a) 65", "b) 75", "c) 61", "d) 71", "d");
-        mediumLevelQuestions[2] =new MediumLevelQuestions(3,"In Java float number should prefix with f?", "a) true", "b) false", "", "", "a");
-        mediumLevelQuestions[3] =new MediumLevelQuestions(4,"What is the correct option for method naming in Java", "a) 1methodName", "b) _1methodName&", "c) _methodName$", "d) MethodName", "c");
-        mediumLevelQuestions[4] =new MediumLevelQuestions(5,"Identify Relational Operators in Java", "a) ><", "b) &&", "c) +-", "d) ?:", "a");
+        MediumLevelQuestions[] mediumLevelQuestions = new MediumLevelQuestions[10];
+        mediumLevelQuestions[0] =new MediumLevelQuestions(1,"What is the OOPS concept used for setting and getting data?", "a) Abstraction", "b) Encapsulation", "c) polymorphism", "d) inheritance", "b");
+        mediumLevelQuestions[1] =new MediumLevelQuestions(2,"Which of the Variables/methods can call with out reference of Object", "a) method", "b) local", "c) instance", "d) static", "d");
+        mediumLevelQuestions[2] =new MediumLevelQuestions(3,"Example of Compile Time Polymorphism?", "a) Method Overloading", "b) Method Overriding", "c) Method Overridden", "d) Method Overloaded", "a");
+        mediumLevelQuestions[3] =new MediumLevelQuestions(4,"When ever Object is created by default which Constructor will get invoked?", "a) Parameterized", "b) private", "c) default", "d) public", "c");
+        mediumLevelQuestions[4] =new MediumLevelQuestions(5,"More than one Constructor with same name and different parameters is called?", "a) constructor overloading", "b) constructor Overriding", "c) constructor Overridden", "d) constructor Overloaded", "a");
+        mediumLevelQuestions[5] =new MediumLevelQuestions(6,"Which method will use to call parent class Constructor", "a) this()", "b) parent()", "c) super()", "d) new()", "c");
+        mediumLevelQuestions[6] =new MediumLevelQuestions(7,"Which inheritance type is not supported by Java?", "a) single level", "b) hybrid", "c) multi level", "d) multiple", "d");
+        mediumLevelQuestions[7] =new MediumLevelQuestions(8,"Which keyword is used to achieve Inheritance? ", "a) extends", "b) implements", "c) throwed", "d) invoked", "a");
+        mediumLevelQuestions[8] =new MediumLevelQuestions(9,"Is String literal memory will store in?", "a) heap", "b) stack&", "c) string constant pool", "d) registry", "c");
+        mediumLevelQuestions[9] =new MediumLevelQuestions(10,"Which of the following doesn't participate in Inheritance?", "a) public variables", "b) constructor", "c) methods", "d) constants", "b");
 
         return mediumLevelQuestions;
     }
 
     public DifficultLevelQuestions[] prepareDiffQuestions(){
 
-        DifficultLevelQuestions[] difficultLevelQuestions = new DifficultLevelQuestions[5];
-        difficultLevelQuestions[0] =new DifficultLevelQuestions(1,"In Java default real number is", "a) float", "b) int", "c) double", "d) long", "c");
-        difficultLevelQuestions[1] =new DifficultLevelQuestions(2,"What is the ASCII code of G in Java", "a) 65", "b) 75", "c) 61", "d) 71", "d");
-        difficultLevelQuestions[2] =new DifficultLevelQuestions(3,"In Java float number should prefix with f?", "a) true", "b) false", "", "", "a");
-        difficultLevelQuestions[3] =new DifficultLevelQuestions(4,"What is the correct option for method naming in Java", "a) 1methodName", "b) _1methodName&", "c) _methodName$", "d) MethodName", "c");
-        difficultLevelQuestions[4] =new DifficultLevelQuestions(5,"Identify Relational Operators in Java", "a) ><", "b) &&", "c) +-", "d) ?:", "a");
+        DifficultLevelQuestions[] difficultLevelQuestions = new DifficultLevelQuestions[10];
+        difficultLevelQuestions[0] =new DifficultLevelQuestions(1,"Methods which are present in child class and not available in parent class is called?", "a) overridden", "b) inherited", "c) specialized", "d) overloaded", "c");
+        difficultLevelQuestions[1] =new DifficultLevelQuestions(2,"which variables can access from out side of package and if only have parent child relationship?", "a) public", "b) private", "c) default", "d) protected", "d");
+        difficultLevelQuestions[2] =new DifficultLevelQuestions(3,"How can we achieve 100% abstraction?", "a) interfaces", "b) abstract class", "c) lambda expression", "d) streams", "a");
+        difficultLevelQuestions[3] =new DifficultLevelQuestions(4,"Which of the following is used to initiate Abstract class?", "a) inner class", "b) initialization block", "c) Anonymous class", "d) static block", "c");
+        difficultLevelQuestions[4] =new DifficultLevelQuestions(5,"Storing application state is called?", "a) serialization", "b) deserialization", "c) serializable", "d) deserializable", "a");
+        difficultLevelQuestions[5] =new DifficultLevelQuestions(6,"How many objects created when we initialized string with new keyword?", "a) 1", "b) 3", "c) 2", "d) 4", "c");
+        difficultLevelQuestions[6] =new DifficultLevelQuestions(7,"Which stage is not present in class loader subsystem?", "a) running", "b) linking", "c) initialization", "d) loading", "a");
+        difficultLevelQuestions[7] =new DifficultLevelQuestions(8,"Diamond problem can be resolved by using?", "a) interface", "b) abstract class", "c) inner class", "d) static block", "a");
+        difficultLevelQuestions[8] =new DifficultLevelQuestions(9,"Which of the block will execute before constructor executing?", "a) inner class", "b) abstract class", "c) initialization block", "d) Anonymous class", "c");
+        difficultLevelQuestions[9] =new DifficultLevelQuestions(10,"Which methods included in interfaces in java8 version?", "a) default", "b) static", "c) concrete", "d) abstract", "a");
 
         return difficultLevelQuestions;
     }
