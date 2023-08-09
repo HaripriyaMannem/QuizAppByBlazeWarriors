@@ -15,7 +15,7 @@ public class QuizApp {
         quizLevels[2] = "Difficult";
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         RoleService roleService = new RoleService();
         roleService.validateRole();
 
