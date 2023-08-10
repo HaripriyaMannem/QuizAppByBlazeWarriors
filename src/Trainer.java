@@ -1,11 +1,11 @@
 public class Trainer {
     private String name;
-    private String quizTitle;
-    private String quizLevelType;
-    private final int noOfQuestions;
+    private String title;
+    private String Level;
+    private final int noOfQuests;
 
     public Trainer() {
-        this.noOfQuestions = 10;
+        this.noOfQuests = 10;
     }
 
     public String getName() {
@@ -16,23 +16,23 @@ public class Trainer {
         this.name = name;
     }
 
-    public String getQuizTitle() {
-        return quizTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setQuizTitle(String quizTitle) {
-        this.quizTitle = quizTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getQuizLevelType() {
-        return quizLevelType;
+    public String getLevel() {
+        return Level;
     }
 
-    public void setQuizLevelType(String quizLevelType) {
-        this.quizLevelType = quizLevelType;
+    public void setLevel(String level) {
+        Level = level;
     }
 
     public int getNoOfQuestions() {
-        return noOfQuestions;
+        return noOfQuests;
     }
 }

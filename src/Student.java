@@ -1,11 +1,9 @@
 public class Student {
     private String name;
-
     private String quizLevel;
-    private boolean isEasyLevelPlayed;
-    private boolean isMedLevelPlayed;
-    private boolean isDiffLevelPlayed;
-    private String award;
+    private boolean isEasyPlayed;
+    private boolean isMedPlayed;
+    private boolean isDiffPlayed;
 
     public String getName() {
         return name;
@@ -23,35 +21,27 @@ public class Student {
         this.quizLevel = quizLevel;
     }
 
-    public boolean isEasyLevelPlayed() {
-        return isEasyLevelPlayed;
+    public boolean isEasyPlayed() {
+        return isEasyPlayed;
     }
 
-    public void setEasyLevelPlayed(boolean easyLevelPlayed) {
-        isEasyLevelPlayed = easyLevelPlayed;
+    public void setEasyPlayed(boolean easyPlayed) {
+        isEasyPlayed = easyPlayed;
     }
 
-    public boolean isMedLevelPlayed() {
-        return isMedLevelPlayed;
+    public boolean isMedPlayed() {
+        return isMedPlayed;
     }
 
-    public void setMedLevelPlayed(boolean medLevelPlayed) {
-        isMedLevelPlayed = medLevelPlayed;
+    public void setMedPlayed(boolean medPlayed) {
+        isMedPlayed = medPlayed;
     }
 
-    public boolean isDiffLevelPlayed() {
-        return isDiffLevelPlayed;
+    public boolean isDiffPlayed() {
+        return isDiffPlayed;
     }
 
-    public void setDiffLevelPlayed(boolean diffLevelPlayed) {
-        isDiffLevelPlayed = diffLevelPlayed;
-    }
-
-    public String getAward() {
-        return award;
-    }
-
-    public void setAward(String award) {
-        this.award = "Blaze Warrior";
+    public void setDiffPlayed(boolean diffPlayed) {
+        isDiffPlayed = diffPlayed;
     }
 }

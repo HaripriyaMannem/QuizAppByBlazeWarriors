@@ -1,157 +1,139 @@
 public class Score {
 
-    private int noOfCorrectAnswersEasyLevel;
-    private int noOfCorrectAnswersMedLevel;
-    private int noOfCorrectAnswersDiffLevel;
-    private int noOfWrongAnswersEasyLevel;
-    private int noOfWrongAnswersMedLevel;
-    private int noOfWrongAnswersDiffLevel;
-    private int noOfSkippedQuestionsEasyLevel;
-    private int noOfSkippedQuestionsMedLevel;
-    private int noOfSkippedQuestionsDiffLevel;
-    private int noOfSkippedQuestions;
+    private int correctAnsEasy;
+    private int correctAnsMed;
+    private int correctAnsDiff;
+    private int wrongAnsEasy;
+    private int wrongAnsMed;
+    private int wrongAnsDiff;
+    private int skippedQuestsEasy;
+    private int skippedQuestsMed;
+    private int skippedQuestsDiff;
 
-    private int noOfTimedOutQuestionsEasyLevel;
-    private int noOfTimedOutQuestionsMedLevel;
-    private int noOfTimedOutQuestionsDiffLevel;
-    private int easyLevelQuizScore;
-    private int medLevelQuizScore;
-    private int diffLevelQuizScore;
-    private int totalScore;
+    private int timedOutQuestsEasy;
+    private int timedOutQuestsMed;
+    private int timedOutQuestsDiff;
+    private int easyScore;
+    private int medScore;
+    private int diffScore;
 
-    public int getNoOfCorrectAnswersEasyLevel() {
-        return noOfCorrectAnswersEasyLevel;
+    public int getCorrectAnsEasy() {
+        return correctAnsEasy;
     }
 
-    public void setNoOfCorrectAnswersEasyLevel(int noOfCorrectAnswersEasyLevel) {
-        this.noOfCorrectAnswersEasyLevel = noOfCorrectAnswersEasyLevel;
+    public void setCorrectAnsEasy(int correctAnsEasy) {
+        this.correctAnsEasy = correctAnsEasy;
     }
 
-    public int getNoOfCorrectAnswersMedLevel() {
-        return noOfCorrectAnswersMedLevel;
+    public int getCorrectAnsMed() {
+        return correctAnsMed;
     }
 
-    public void setNoOfCorrectAnswersMedLevel(int noOfCorrectAnswersMedLevel) {
-        this.noOfCorrectAnswersMedLevel = noOfCorrectAnswersMedLevel;
+    public void setCorrectAnsMed(int correctAnsMed) {
+        this.correctAnsMed = correctAnsMed;
     }
 
-    public int getNoOfCorrectAnswersDiffLevel() {
-        return noOfCorrectAnswersDiffLevel;
+    public int getCorrectAnsDiff() {
+        return correctAnsDiff;
     }
 
-    public void setNoOfCorrectAnswersDiffLevel(int noOfCorrectAnswersDiffLevel) {
-        this.noOfCorrectAnswersDiffLevel = noOfCorrectAnswersDiffLevel;
+    public void setCorrectAnsDiff(int correctAnsDiff) {
+        this.correctAnsDiff = correctAnsDiff;
     }
 
-    public int getNoOfWrongAnswersEasyLevel() {
-        return noOfWrongAnswersEasyLevel;
+    public int getWrongAnsEasy() {
+        return wrongAnsEasy;
     }
 
-    public void setNoOfWrongAnswersEasyLevel(int noOfWrongAnswersEasyLevel) {
-        this.noOfWrongAnswersEasyLevel = noOfWrongAnswersEasyLevel;
+    public void setWrongAnsEasy(int wrongAnsEasy) {
+        this.wrongAnsEasy = wrongAnsEasy;
     }
 
-    public int getNoOfWrongAnswersMedLevel() {
-        return noOfWrongAnswersMedLevel;
+    public int getWrongAnsMed() {
+        return wrongAnsMed;
     }
 
-    public void setNoOfWrongAnswersMedLevel(int noOfWrongAnswersMedLevel) {
-        this.noOfWrongAnswersMedLevel = noOfWrongAnswersMedLevel;
+    public void setWrongAnsMed(int wrongAnsMed) {
+        this.wrongAnsMed = wrongAnsMed;
     }
 
-    public int getNoOfWrongAnswersDiffLevel() {
-        return noOfWrongAnswersDiffLevel;
+    public int getWrongAnsDiff() {
+        return wrongAnsDiff;
     }
 
-    public void setNoOfWrongAnswersDiffLevel(int noOfWrongAnswersDiffLevel) {
-        this.noOfWrongAnswersDiffLevel = noOfWrongAnswersDiffLevel;
+    public void setWrongAnsDiff(int wrongAnsDiff) {
+        this.wrongAnsDiff = wrongAnsDiff;
     }
 
-    public int getNoOfSkippedQuestionsEasyLevel() {
-        return noOfSkippedQuestionsEasyLevel;
+    public int getSkippedQuestsEasy() {
+        return skippedQuestsEasy;
     }
 
-    public void setNoOfSkippedQuestionsEasyLevel(int noOfSkippedQuestionsEasyLevel) {
-        this.noOfSkippedQuestionsEasyLevel = noOfSkippedQuestionsEasyLevel;
+    public void setSkippedQuestsEasy(int skippedQuestsEasy) {
+        this.skippedQuestsEasy = skippedQuestsEasy;
     }
 
-    public int getNoOfSkippedQuestionsMedLevel() {
-        return noOfSkippedQuestionsMedLevel;
+    public int getSkippedQuestsMed() {
+        return skippedQuestsMed;
     }
 
-    public void setNoOfSkippedQuestionsMedLevel(int noOfSkippedQuestionsMedLevel) {
-        this.noOfSkippedQuestionsMedLevel = noOfSkippedQuestionsMedLevel;
+    public void setSkippedQuestsMed(int skippedQuestsMed) {
+        this.skippedQuestsMed = skippedQuestsMed;
     }
 
-    public int getNoOfSkippedQuestionsDiffLevel() {
-        return noOfSkippedQuestionsDiffLevel;
+    public int getSkippedQuestsDiff() {
+        return skippedQuestsDiff;
     }
 
-    public void setNoOfSkippedQuestionsDiffLevel(int noOfSkippedQuestionsDiffLevel) {
-        this.noOfSkippedQuestionsDiffLevel = noOfSkippedQuestionsDiffLevel;
+    public void setSkippedQuestsDiff(int skippedQuestsDiff) {
+        this.skippedQuestsDiff = skippedQuestsDiff;
     }
 
-    public int getNoOfSkippedQuestions() {
-        return noOfSkippedQuestions;
+    public int getTimedOutQuestsEasy() {
+        return timedOutQuestsEasy;
     }
 
-    public void setNoOfSkippedQuestions(int noOfSkippedQuestions) {
-        this.noOfSkippedQuestions = noOfSkippedQuestions;
+    public void setTimedOutQuestsEasy(int timedOutQuestsEasy) {
+        this.timedOutQuestsEasy = timedOutQuestsEasy;
     }
 
-    public int getEasyLevelQuizScore() {
-        return easyLevelQuizScore;
+    public int getTimedOutQuestsMed() {
+        return timedOutQuestsMed;
     }
 
-    public void setEasyLevelQuizScore(int easyLevelQuizScore) {
-        this.easyLevelQuizScore = easyLevelQuizScore;
+    public void setTimedOutQuestsMed(int timedOutQuestsMed) {
+        this.timedOutQuestsMed = timedOutQuestsMed;
     }
 
-    public int getMedLevelQuizScore() {
-        return medLevelQuizScore;
+    public int getTimedOutQuestsDiff() {
+        return timedOutQuestsDiff;
     }
 
-    public void setMedLevelQuizScore(int medLevelQuizScore) {
-        this.medLevelQuizScore = medLevelQuizScore;
+    public void setTimedOutQuestsDiff(int timedOutQuestsDiff) {
+        this.timedOutQuestsDiff = timedOutQuestsDiff;
     }
 
-    public int getDiffLevelQuizScore() {
-        return diffLevelQuizScore;
+    public int getEasyScore() {
+        return easyScore;
     }
 
-    public void setDiffLevelQuizScore(int diffLevelQuizScore) {
-        this.diffLevelQuizScore = diffLevelQuizScore;
+    public void setEasyScore(int easyScore) {
+        this.easyScore = easyScore;
     }
 
-    public int getTotalScore() {
-        return totalScore;
+    public int getMedScore() {
+        return medScore;
     }
 
-    public void setTotalScore(int totalScore) {
-        this.totalScore = totalScore;
+    public void setMedScore(int medScore) {
+        this.medScore = medScore;
     }
 
-    public int getNoOfTimedOutQuestionsEasyLevel() {
-        return noOfTimedOutQuestionsEasyLevel;
+    public int getDiffScore() {
+        return diffScore;
     }
 
-    public void setNoOfTimedOutQuestionsEasyLevel(int noOfTimedOutQuestionsEasyLevel) {
-        this.noOfTimedOutQuestionsEasyLevel = noOfTimedOutQuestionsEasyLevel;
-    }
-
-    public int getNoOfTimedOutQuestionsMedLevel() {
-        return noOfTimedOutQuestionsMedLevel;
-    }
-
-    public void setNoOfTimedOutQuestionsMedLevel(int noOfTimedOutQuestionsMedLevel) {
-        this.noOfTimedOutQuestionsMedLevel = noOfTimedOutQuestionsMedLevel;
-    }
-
-    public int getNoOfTimedOutQuestionsDiffLevel() {
-        return noOfTimedOutQuestionsDiffLevel;
-    }
-
-    public void setNoOfTimedOutQuestionsDiffLevel(int noOfTimedOutQuestionsDiffLevel) {
-        this.noOfTimedOutQuestionsDiffLevel = noOfTimedOutQuestionsDiffLevel;
+    public void setDiffScore(int diffScore) {
+        this.diffScore = diffScore;
     }
 }
