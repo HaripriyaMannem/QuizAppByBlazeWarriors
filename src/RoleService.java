@@ -5,11 +5,15 @@ public class RoleService {
     String cyan = "\u001B[36m";
     String red = "\u001B[31m";
     String reset = "\u001B[0m";
-    public RoleService()
+    public RoleService(boolean isStartQuiz)
     {
-        System.out.println(cyan + "*********************************************");
-        System.out.println("Welcome to the Quiz App By Blaze Warriors!!!");
-        System.out.println("*********************************************" + reset);
+        if(isStartQuiz)
+        {
+            System.out.println(cyan + "*********************************************");
+            System.out.println("Welcome to the Quiz App By Blaze Warriors!!!");
+            System.out.println("*********************************************" + reset);
+        }
+
 
     }
 
@@ -40,7 +44,6 @@ public class RoleService {
         {
             PlayService playService = new PlayService();
             playService.playQuiz();
-
         }
         else
         {

@@ -74,6 +74,7 @@ public class PlayService {
         {
             System.out.println(purple + name +", hope you had a great time. " +
                     "Thanks for visiting QuizApp by Blaze Warriors!!!"+ reset);
+
         }
 
         System.out.println("Do you want to play again "+ yellow + "Y/N"+ reset);
@@ -85,7 +86,7 @@ public class PlayService {
         }
         else
         {
-            scoreService.calcFinalScore(name);
+            scoreService.calcFinalScore(name, score);
             System.out.println(blue + name +", hope you had a great time. " +
                     "Thanks for playing QuizApp by Blaze Warriors!!!" + reset);
             System.out.println(cyan  +"***************************************************************************" + reset);
@@ -126,7 +127,7 @@ public class PlayService {
 
                         if(finalTimeInSec <= 10)
                         {
-                            score = scoreService.calcRealScoreEasy(q.getId(), answer, easy);
+                            score = scoreService.calcRealScoreEasy(q.getId(), answer, easy, score);
                             System.out.println(yellow + "Your current score is:" +
                                     score.getEasyScore() + reset);
                         }
@@ -180,7 +181,7 @@ public class PlayService {
 
                     if(finalTimeInSec <= 10)
                     {
-                        score = scoreService.calcRealScoreMed(q.getId(), answer, medium);
+                        score = scoreService.calcRealScoreMed(q.getId(), answer, medium, score);
                         System.out.println(yellow + "Your current score is:" + score.getMedScore() + reset);
                     }
                     else
@@ -233,7 +234,7 @@ public class PlayService {
 
                 if(finalTimeInSec <= 10)
                 {
-                    score = scoreService.calcRealScoreDiff(q.getId(), answer, difficult);
+                    score = scoreService.calcRealScoreDiff(q.getId(), answer, difficult, score);
                     System.out.println(yellow + "Your current score is:" + score.getDiffScore() + reset);
                 }
                 else

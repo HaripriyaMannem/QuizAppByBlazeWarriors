@@ -12,7 +12,8 @@ public class QuizApp {
 
     public static void main(String[] args)  {
 
-        RoleService roleService = new RoleService();
+        boolean isStartQuiz = true;
+        RoleService roleService = new RoleService(isStartQuiz);
         roleService.validateRole();
 
     }

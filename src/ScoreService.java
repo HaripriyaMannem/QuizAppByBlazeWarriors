@@ -1,7 +1,6 @@
 public class ScoreService {
 
     PrepService prepService = new PrepService();
-    Score score = new Score();
     Student student = new Student();
     int easyCorrectAnswers = 0;
     int easyWrongAnswers = 0;
@@ -21,7 +20,7 @@ public class ScoreService {
     String medium = QuizApp.quizLevels[1];
     String difficult = QuizApp.quizLevels[2];
 
-    public Score calcRealScoreEasy(int qId, String correctAnswer, String quizLevel)
+    public Score calcRealScoreEasy(int qId, String correctAnswer, String quizLevel, Score score)
     {
         if(quizLevel.equalsIgnoreCase(easy))
         {
@@ -50,7 +49,7 @@ public class ScoreService {
         return score;
     }
 
-    public Score calcRealScoreMed(int qId, String correctAns, String quizLevel)
+    public Score calcRealScoreMed(int qId, String correctAns, String quizLevel, Score score)
     {
         if(quizLevel.equalsIgnoreCase(medium))
         {
@@ -79,7 +78,7 @@ public class ScoreService {
         return score;
     }
 
-    public Score calcRealScoreDiff(int qId, String correctAns, String quizLevel)
+    public Score calcRealScoreDiff(int qId, String correctAns, String quizLevel, Score score)
     {
         if(quizLevel.equalsIgnoreCase(difficult))
         {
@@ -113,7 +112,7 @@ public class ScoreService {
         return (correctAnswers*2) - (wrongAnswers);
     }
 
-    public void calcFinalScore(String name)
+    public void calcFinalScore(String name, Score score)
     {
         System.out.println(cyan + "***********************************************************************");
         System.out.println(blue + "Summary of the all levels of Quiz you played");
@@ -126,8 +125,11 @@ public class ScoreService {
             {
                 System.out.println(yellow + name + " you have answered all questions correctly. " +
                         "Total Score is " + finalScore + "/30" + reset);
-                System.out.println(green + "Hurray!!! you have successfully completed all levels of Quiz");
+                System.out.println(green + "You have successfully completed all levels of Quiz");
                 System.out.println(purple + "Congratulations!!! you are awarded by Blaze Warrior!!" + reset);
+            }
+            else{
+                System.out.println(yellow + "Well played " + name + " your total score is " + finalScore + reset);
             }
         }
         else{

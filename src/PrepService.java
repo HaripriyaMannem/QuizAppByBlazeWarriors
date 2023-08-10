@@ -13,7 +13,7 @@ public class PrepService {
     String green =  "\033[1;92m";
     String reset = "\u001B[0m";
     String red = "\u001B[31m";
-
+    RoleService roleService = new RoleService(false);
 
     public void prepareQuiz(Trainer trainer)
     {
@@ -90,6 +90,7 @@ public class PrepService {
                         } else {
                             //show msg when users does want to continue to play
                             displayMsg(name);
+                            roleService.validateRole();
                         }
                     } else {
                         //Show msg when user entered wrong Quiz level
@@ -99,6 +100,7 @@ public class PrepService {
                 } else {
                     //show msg when users does want to continue to play
                     displayMsg(name);
+                    roleService.validateRole();
                 }
             } else {
                 //Show msg when user entered wrong Quiz level
@@ -109,6 +111,7 @@ public class PrepService {
         else{
             //show msg when users does want to continue to play
             displayMsg(name);
+            roleService.validateRole();
         }
     }
 
