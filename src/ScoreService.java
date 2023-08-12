@@ -20,26 +20,40 @@ public class ScoreService {
     String medium = QuizApp.quizLevels[1];
     String difficult = QuizApp.quizLevels[2];
 
-    public Score calcRealScoreEasy(int qId, String correctAnswer, String quizLevel, Score score)
+    public Score calcRealScoreEasy(int qId, String correctAns, String quizLevel, Score score)
     {
         if(quizLevel.equalsIgnoreCase(easy))
         {
             EasyQuestions[] easyQuests = prepService.prepEasyQuests();
             String actualCorrectAns = easyQuests[qId-1].getAnswer();
 
-            if (actualCorrectAns.equalsIgnoreCase(correctAnswer))
+            try
             {
-                easyCorrectAnswers++;
-                score.setCorrectAnsEasy(easyCorrectAnswers);
-                System.out.println(green + "Correct Answer" + reset);
-            }
-            else
-            {
-                easyWrongAnswers++;
-                score.setWrongAnsEasy(easyWrongAnswers);
+                if(ValidateAns(correctAns))
+                {
+                    if (actualCorrectAns.equalsIgnoreCase(correctAns))
+                    {
+                        easyCorrectAnswers++;
+                        score.setCorrectAnsEasy(easyCorrectAnswers);
+                        System.out.println(green + "Correct Answer" + reset);
+                    }
+                    else
+                    {
+                        easyWrongAnswers++;
+                        score.setWrongAnsEasy(easyWrongAnswers);
 
-                System.out.println(red + "Wrong Answer" + reset);
-                System.out.println(green + "Correct Answer is: " + actualCorrectAns + reset);
+                        System.out.println(red + "Wrong Answer" + reset);
+                        System.out.println(green + "Correct Answer is: " + actualCorrectAns + reset);
+                    }
+                }
+                else
+                {
+                    throw new IllegalArgumentException("Answer is only valid if input is a, b,c and d.");
+                }
+           }
+            catch (IllegalArgumentException illegalArgExc)
+            {
+                System.out.println(red + illegalArgExc.getMessage() + reset);
             }
         }
         int totalScore = calcScore(easyCorrectAnswers, easyWrongAnswers);
@@ -56,19 +70,33 @@ public class ScoreService {
             MedQuestions[] medQuests = prepService.prepMedQuests();
             String actualCorrectAns = medQuests[qId-1].getAnswer();
 
-            if (actualCorrectAns.equalsIgnoreCase(correctAns))
+            try
             {
-                medCorrectAnswers++;
-                score.setCorrectAnsMed(medCorrectAnswers);
-                System.out.println(green + "Correct Answer" + reset);
-            }
-            else
-            {
-                medWrongAnswers++;
-                score.setWrongAnsMed(medWrongAnswers);
+                if (ValidateAns(correctAns))
+                {
+                    if (actualCorrectAns.equalsIgnoreCase(correctAns))
+                    {
+                        medCorrectAnswers++;
+                        score.setCorrectAnsMed(medCorrectAnswers);
+                        System.out.println(green + "Correct Answer" + reset);
+                    }
+                    else
+                    {
+                        medWrongAnswers++;
+                        score.setWrongAnsMed(medWrongAnswers);
 
-                System.out.println(red + "Wrong Answer" + reset);
-                System.out.println(green + "Correct Answer is: " + actualCorrectAns + reset);
+                        System.out.println(red + "Wrong Answer" + reset);
+                        System.out.println(green + "Correct Answer is: " + actualCorrectAns + reset);
+                    }
+                }
+                else
+                {
+                    throw new IllegalArgumentException("Answer is only valid if input is a, b,c and d.");
+                }
+            }
+            catch (IllegalArgumentException illegalArgExc)
+            {
+                System.out.println(red + illegalArgExc.getMessage() + reset);
             }
         }
         int totalScore = calcScore(medCorrectAnswers, medWrongAnswers);
@@ -85,19 +113,32 @@ public class ScoreService {
             DiffQuestions[] diffQuests = prepService.prepDiffQuests();
             String actualCorrectAns = diffQuests[qId-1].getAnswer();
 
-            if (actualCorrectAns.equalsIgnoreCase(correctAns))
+            try
             {
-                diffCorrectAnswers++;
-                score.setCorrectAnsDiff(diffCorrectAnswers);
-                System.out.println(green + "Correct Answer" + reset);
-            }
-            else
-            {
-                diffWrongAnswers++;
-                score.setWrongAnsDiff(diffWrongAnswers);
+                if (ValidateAns(correctAns))
+                {
+                    if (actualCorrectAns.equalsIgnoreCase(correctAns))
+                    {
+                        diffCorrectAnswers++;
+                        score.setCorrectAnsDiff(diffCorrectAnswers);
+                        System.out.println(green + "Correct Answer" + reset);
+                    } else
+                    {
+                        diffWrongAnswers++;
+                        score.setWrongAnsDiff(diffWrongAnswers);
 
-                System.out.println(red + "Wrong Answer" + reset);
-                System.out.println(green + "Correct Answer is: " + actualCorrectAns + reset);
+                        System.out.println(red + "Wrong Answer" + reset);
+                        System.out.println(green + "Correct Answer is: " + actualCorrectAns + reset);
+                    }
+                }
+                else
+                {
+                    throw new IllegalArgumentException("Answer is only valid if input is a, b,c and d.");
+                }
+            }
+            catch (IllegalArgumentException illegalArgExc)
+            {
+                System.out.println(red + illegalArgExc.getMessage() + reset);
             }
         }
         int totalScore = calcScore(diffCorrectAnswers, diffWrongAnswers);
@@ -105,6 +146,12 @@ public class ScoreService {
         student.setDiffPlayed(true);
 
         return score;
+    }
+
+    private boolean ValidateAns(String ans)
+    {
+        return ans.equalsIgnoreCase("a") || ans.equalsIgnoreCase("b")
+                || ans.equalsIgnoreCase("c") || ans.equalsIgnoreCase("d");
     }
 
 
@@ -123,19 +170,18 @@ public class ScoreService {
             if(finalScore == 30 && score.getSkippedQuestsEasy() == 0 &&
                     score.getSkippedQuestsMed() == 0 && score.getSkippedQuestsDiff()== 0)
             {
-                System.out.println(yellow + name + " you have answered all questions correctly. " +
+                System.out.println(yellow + name + ", you have answered all questions correctly. " +
                         "Total Score is " + finalScore + "/30" + reset);
-                System.out.println(green + "You have successfully completed all levels of Quiz");
+                System.out.println(green + "You have successfully completed all levels of Quiz.");
                 System.out.println(purple + "Congratulations!!! you are awarded by Blaze Warrior!!" + reset);
             }
-            else{
+            else
+            {
                 System.out.println(yellow + "Well played " + name + " your total score is " + finalScore + reset);
             }
         }
         else{
             System.out.println(yellow + "Well played " + name + " your total score is " + finalScore + reset);
-            System.out.println(purple + " " +  reset);
         }
-
     }
 }

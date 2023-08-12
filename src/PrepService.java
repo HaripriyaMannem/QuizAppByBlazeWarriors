@@ -15,8 +15,15 @@ public class PrepService {
     String red = "\u001B[31m";
     RoleService roleService = new RoleService(false);
 
-    public void prepareQuiz(Trainer trainer)
+    String status;
+    /*public PrepService()
     {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter " + yellow + "Y/N"+ reset  +" to prepare Questions: " );
+        status = sc.nextLine().trim();
+    }*/
+
+    public void prepareQuiz(Trainer trainer) throws InvalidRoleException, InvalidLevelException {
         String quizArr = Arrays.toString(QuizApp.quizLevels);
         String title =  firstCharUppercase(trainer.getTitle());
         String name = firstCharUppercase(trainer.getName());
@@ -25,8 +32,7 @@ public class PrepService {
         String levels;
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter " + yellow + "Y/N"+ reset  +" to prepare Questions: " );
-        String status = sc.nextLine().trim();
+
 
         if(status.equalsIgnoreCase("Y"))
         {
@@ -81,6 +87,7 @@ public class PrepService {
                                 showMsg(trainer, title, name);
                                 //Showing Success msg when all level Quiz prep completed
                                 successMsg(name);
+                                //roleService.validateRole();
 
                             } else {
                                 //Show msg when user entered wrong Quiz level
@@ -90,7 +97,7 @@ public class PrepService {
                         } else {
                             //show msg when users does want to continue to play
                             displayMsg(name);
-                            roleService.validateRole();
+                            //roleService.validateRole();
                         }
                     } else {
                         //Show msg when user entered wrong Quiz level
@@ -100,7 +107,7 @@ public class PrepService {
                 } else {
                     //show msg when users does want to continue to play
                     displayMsg(name);
-                    roleService.validateRole();
+                    //roleService.validateRole();
                 }
             } else {
                 //Show msg when user entered wrong Quiz level
@@ -111,7 +118,7 @@ public class PrepService {
         else{
             //show msg when users does want to continue to play
             displayMsg(name);
-            roleService.validateRole();
+            //roleService.validateRole();
         }
     }
 
@@ -323,8 +330,11 @@ public class PrepService {
                 ", hope you had a great time. Thanks for visiting QuizApp by Blaze Warriors!!!" + reset);
     }
 
-    private void failedMsg(){
-        System.out.println(red+ "Oops!!! Quiz Level type is not valid" + reset);
-
+    private void failedMsg() throws InvalidLevelException
+    {
+        InvalidLevelException invalidLevelExc =  new InvalidLevelException("Oops!!! " +
+                "Quiz Level is not valid please try again!!");
+        System.out.println(red + invalidLevelExc.getMessage() + reset);
+        throw invalidLevelExc;
     }
 }

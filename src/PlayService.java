@@ -29,7 +29,7 @@ public class PlayService {
         status = sc.nextLine().trim();
     }
 
-    public void playQuiz()
+    public void playQuiz() throws InvalidLevelException
     {
         String quizArr = Arrays.toString(QuizApp.quizLevels);
         String name = prepService.firstCharUppercase(student.getName());
@@ -69,6 +69,13 @@ public class PlayService {
                 playDiffQuiz(shuffledQuests);
                 summaryOfDiffQuiz();
             }
+            else
+            {
+                InvalidLevelException invalidLevelExc =  new InvalidLevelException("Oops!!! " +
+                        "Quiz Level is not valid please try again!!");
+                System.out.println(red + invalidLevelExc.getMessage() + reset);
+                throw invalidLevelExc;
+            }
         }
         else
         {
@@ -89,7 +96,8 @@ public class PlayService {
             scoreService.calcFinalScore(name, score);
             System.out.println(blue + name +", hope you had a great time. " +
                     "Thanks for playing QuizApp by Blaze Warriors!!!" + reset);
-            System.out.println(cyan  +"***************************************************************************" + reset);
+            System.out.println(cyan  +"**********************************************************" +
+                    "*****************" + reset);
         }
 
     }
@@ -103,48 +111,48 @@ public class PlayService {
 
             for(Questions q : easyQuestions)
             {
-                    System.out.println("---------------------------------------------");
-                    long startTime = System.currentTimeMillis();
-                    System.out.println(purple + "Question " + (i+1) + " : " + reset);
-                    System.out.println(q.getQuestion());
-                    System.out.println(q.getOpt1());
-                    System.out.println(q.getOpt2());
-                    System.out.println(q.getOpt3());
-                    System.out.println(q.getOpt4());
+                System.out.println("---------------------------------------------");
+                long startTime = System.currentTimeMillis();
+                System.out.println(purple + "Question " + (i+1) + " : " + reset);
+                System.out.println(q.getQuestion());
+                System.out.println(q.getOpt1());
+                System.out.println(q.getOpt2());
+                System.out.println(q.getOpt3());
+                System.out.println(q.getOpt4());
 
-                    System.out.println( "Do you want to skip the Question: " + yellow + "Y/N" + reset);
-                    Scanner sc = new Scanner(System.in);
-                    String skip = sc.nextLine().trim();
+                System.out.println( "Do you want to skip the Question: " + yellow + "Y/N" + reset);
+                Scanner sc = new Scanner(System.in);
+                String skip = sc.nextLine().trim();
 
-                    if(skip.equalsIgnoreCase("n"))
+                if(skip.equalsIgnoreCase("n"))
+                {
+                    System.out.println(blue + "Enter the right answer:" + reset);
+                    String answer = sc.nextLine().trim();
+
+                    long endTime = System.currentTimeMillis();
+                    long finalTimeInMs = (endTime- startTime);
+                    long finalTimeInSec = (finalTimeInMs/1000)%60;
+
+                    if(finalTimeInSec <= 10)
                     {
-                        System.out.println(blue + "Enter the right answer:" + reset);
-                        String answer = sc.nextLine().trim();
-
-                        long endTime = System.currentTimeMillis();
-                        long finalTimeInMs = (endTime- startTime);
-                        long finalTimeInSec = (finalTimeInMs/1000)%60;
-
-                        if(finalTimeInSec <= 10)
-                        {
-                            score = scoreService.calcRealScoreEasy(q.getId(), answer, easy, score);
-                            System.out.println(yellow + "Your current score is:" +
-                                    score.getEasyScore() + reset);
-                        }
-                        else
-                        {
-                            noOfTimedOutQuestion++;
-                            score.setTimedOutQuestsEasy(noOfTimedOutQuestion);
-                            System.out.println(purple + "Sorry,time out. " +
-                                    "Time taken to answer this Question is: "+  finalTimeInSec  +"s" + reset);
-                        }
+                        score = scoreService.calcRealScoreEasy(q.getId(), answer, easy, score);
+                        System.out.println(yellow + "Your current score is:" +
+                                score.getEasyScore() + reset);
                     }
                     else
                     {
-                        noOfSkippedQuestion++;
-                        score.setSkippedQuestsEasy(noOfSkippedQuestion);
+                        noOfTimedOutQuestion++;
+                        score.setTimedOutQuestsEasy(noOfTimedOutQuestion);
+                        System.out.println(purple + "Sorry,time out. " +
+                                "Time taken to answer this Question is: "+  finalTimeInSec  +"s" + reset);
                     }
-                    i++;
+                }
+                else
+                {
+                    noOfSkippedQuestion++;
+                    score.setSkippedQuestsEasy(noOfSkippedQuestion);
+                }
+                i++;
             }
     }
 

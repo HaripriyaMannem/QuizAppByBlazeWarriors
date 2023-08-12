@@ -13,8 +13,24 @@ public class QuizApp {
     public static void main(String[] args)  {
 
         boolean isStartQuiz = true;
-        RoleService roleService = new RoleService(isStartQuiz);
-        roleService.validateRole();
+        String purple = "\033[1;95m";
 
+        RoleService roleService = new RoleService(isStartQuiz);
+        try
+        {
+            roleService.validateRole();
+        }
+        catch (InvalidRoleException e)
+        {
+            try
+            {
+                roleService.validateRole();
+            }
+            catch (InvalidRoleException ex)
+            {
+                System.out.println(purple + "you have exceeded the maximum number of attempts, " +
+                        "please try again after some time.");
+            }
+        }
     }
 }
