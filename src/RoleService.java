@@ -35,7 +35,9 @@ public class RoleService {
             String title = sc.nextLine().trim();
             trainer.setTitle(title);
 
-            PrepService prepService = new PrepService();
+            boolean isPrepQuiz = true;
+            PrepService prepService = new PrepService(isPrepQuiz);
+
             try
             {
                 prepService.prepareQuiz(trainer);

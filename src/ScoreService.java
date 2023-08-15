@@ -1,6 +1,6 @@
 public class ScoreService {
 
-    PrepService prepService = new PrepService();
+    PrepService prepService = new PrepService(false);
     Student student = new Student();
     int easyCorrectAnswers = 0;
     int easyWrongAnswers = 0;
@@ -48,7 +48,7 @@ public class ScoreService {
                 }
                 else
                 {
-                    throw new IllegalArgumentException("Answer is only valid if input is a, b,c and d.");
+                    throw new IllegalArgumentException("Answer is only valid if input is a,b,c or d.");
                 }
            }
             catch (IllegalArgumentException illegalArgExc)
@@ -56,6 +56,7 @@ public class ScoreService {
                 System.out.println(red + illegalArgExc.getMessage() + reset);
             }
         }
+
         int totalScore = calcScore(easyCorrectAnswers, easyWrongAnswers);
         score.setEasyScore(totalScore);
         student.setEasyPlayed(true);
@@ -91,7 +92,7 @@ public class ScoreService {
                 }
                 else
                 {
-                    throw new IllegalArgumentException("Answer is only valid if input is a, b,c and d.");
+                    throw new IllegalArgumentException("Answer is only valid if input is a,b,c or d.");
                 }
             }
             catch (IllegalArgumentException illegalArgExc)
@@ -99,6 +100,7 @@ public class ScoreService {
                 System.out.println(red + illegalArgExc.getMessage() + reset);
             }
         }
+
         int totalScore = calcScore(medCorrectAnswers, medWrongAnswers);
         score.setMedScore(totalScore);
         student.setMedPlayed(true);
@@ -133,7 +135,7 @@ public class ScoreService {
                 }
                 else
                 {
-                    throw new IllegalArgumentException("Answer is only valid if input is a, b,c and d.");
+                    throw new IllegalArgumentException("Answer is only valid if input is a,b,c or d.");
                 }
             }
             catch (IllegalArgumentException illegalArgExc)
@@ -141,6 +143,7 @@ public class ScoreService {
                 System.out.println(red + illegalArgExc.getMessage() + reset);
             }
         }
+
         int totalScore = calcScore(diffCorrectAnswers, diffWrongAnswers);
         score.setDiffScore(totalScore);
         student.setDiffPlayed(true);
@@ -161,7 +164,7 @@ public class ScoreService {
 
     public void calcFinalScore(String name, Score score)
     {
-        System.out.println(cyan + "***********************************************************************");
+        System.out.println(cyan + "**************************************************************************");
         System.out.println(blue + "Summary of the all levels of Quiz you played");
         int finalScore = score.getEasyScore() + score.getMedScore() + score.getDiffScore();
 
@@ -177,11 +180,11 @@ public class ScoreService {
             }
             else
             {
-                System.out.println(yellow + "Well played " + name + " your total score is " + finalScore + reset);
+                System.out.println(yellow + "Well played " + name + ", your total score is " + finalScore + reset);
             }
         }
         else{
-            System.out.println(yellow + "Well played " + name + " your total score is " + finalScore + reset);
+            System.out.println(yellow + "Well played " + name + ", your total score is " + finalScore + reset);
         }
     }
 }

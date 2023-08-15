@@ -13,15 +13,19 @@ public class PrepService {
     String green =  "\033[1;92m";
     String reset = "\u001B[0m";
     String red = "\u001B[31m";
+    String cyan = "\u001B[36m";
     RoleService roleService = new RoleService(false);
 
     String status;
-    /*public PrepService()
+    public PrepService(boolean isPrepQuiz)
     {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter " + yellow + "Y/N"+ reset  +" to prepare Questions: " );
-        status = sc.nextLine().trim();
-    }*/
+        if(isPrepQuiz)
+        {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Enter " + yellow + "Y/N"+ reset  +" to prepare Questions: " );
+            status = sc.nextLine().trim();
+        }
+    }
 
     public void prepareQuiz(Trainer trainer) throws InvalidRoleException, InvalidLevelException {
         String quizArr = Arrays.toString(QuizApp.quizLevels);
@@ -32,7 +36,6 @@ public class PrepService {
         String levels;
 
         Scanner sc = new Scanner(System.in);
-
 
         if(status.equalsIgnoreCase("Y"))
         {
@@ -47,7 +50,7 @@ public class PrepService {
             if (!quizLevels.equalsIgnoreCase("NA"))
             {
                 //Display Questions According to level Type
-                displayQuestions(trainer.getLevel());
+                displayQuests(trainer.getLevel());
                 showMsg(trainer, title, name);
 
                 System.out.println("Enter " + yellow + "Y/N"+ reset  +" to prepare other level Questions: " );
@@ -65,7 +68,7 @@ public class PrepService {
                     if (!quizLevels.equalsIgnoreCase("NA"))
                     {
                         //Display Questions According to level Type
-                        displayQuestions(trainer.getLevel());
+                        displayQuests(trainer.getLevel());
                         showMsg(trainer, title, name);
 
                         System.out.println("Enter " + yellow + "Y/N"+
@@ -83,42 +86,46 @@ public class PrepService {
                             if (!quizLevels.equalsIgnoreCase("NA"))
                             {
                                 //Display Questions According to level Type
-                                displayQuestions(trainer.getLevel());
+                                displayQuests(trainer.getLevel());
                                 showMsg(trainer, title, name);
                                 //Showing Success msg when all level Quiz prep completed
                                 successMsg(name);
-                                //roleService.validateRole();
-
-                            } else {
-                                //Show msg when user entered wrong Quiz level
-                                failedMsg();
-                                prepareQuiz(trainer);
+                                roleService.validateRole();
                             }
-                        } else {
+                            else
+                            {
+                                failedMsg();
+                            }
+                        }
+                        else
+                        {
                             //show msg when users does want to continue to play
                             displayMsg(name);
-                            //roleService.validateRole();
+                            roleService.validateRole();
                         }
-                    } else {
-                        //Show msg when user entered wrong Quiz level
-                        failedMsg();
-                        prepareQuiz(trainer);
                     }
-                } else {
+                    else
+                    {
+                        failedMsg();
+                    }
+                }
+                else
+                {
                     //show msg when users does want to continue to play
                     displayMsg(name);
-                    //roleService.validateRole();
+                    roleService.validateRole();
                 }
-            } else {
-                //Show msg when user entered wrong Quiz level
+            }
+            else
+            {
                 failedMsg();
-                prepareQuiz(trainer);
             }
         }
-        else{
+        else
+        {
             //show msg when users does want to continue to play
             displayMsg(name);
-            //roleService.validateRole();
+            roleService.validateRole();
         }
     }
 
@@ -159,7 +166,7 @@ public class PrepService {
     }
 
 
-    private void displayQuestions(String levelType)
+    private void displayQuests(String levelType)
     {
         if(levelType.equalsIgnoreCase(easy))
         {
@@ -306,28 +313,38 @@ public class PrepService {
         return diffQuestions;
     }
 
-    public String firstCharUppercase(String source){
+    public String firstCharUppercase(String source)
+    {
         return source.substring(0, 1).toUpperCase() + source.substring(1);
     }
 
-    private void showMsg(Trainer trainer, String title, String name){
+    private void showMsg(Trainer trainer, String title, String name)
+    {
         System.out.println(green + trainer.getNoOfQuestions() +
                 " Questions Prepared Successfully on " + title + " for " +
                 firstCharUppercase(trainer.getLevel()) + " Level by "+ name + "." + reset);
     }
-    private void showLevels(String quizLevels){
+    private void showLevels(String quizLevels)
+    {
         System.out.println("Please enter which level "+ yellow  +
                 quizLevels + reset +" of Questions to be prepared next:");
     }
 
-    private void successMsg(String name){
+    private void successMsg(String name)
+    {
         System.out.println(blue + "Hurray!!! "+ name +
                 " you have done with the quiz preparation. Good job." + reset);
+        System.out.println(cyan + "*****************************************" +
+                "*****************************" + reset);
     }
 
-    private void displayMsg(String name){
+    private void displayMsg(String name)
+    {
         System.out.println(purple + name +
                 ", hope you had a great time. Thanks for visiting QuizApp by Blaze Warriors!!!" + reset);
+        System.out.println(cyan + "*****************************************" +
+                "****************************************" + reset);
+
     }
 
     private void failedMsg() throws InvalidLevelException

@@ -2,7 +2,7 @@ import java.util.*;
 
 public class PlayService {
     Student student = new Student();
-    PrepService prepService = new PrepService();
+    PrepService prepService = new PrepService(false);
     ScoreService scoreService = new ScoreService();
     Score score = new Score();
 
@@ -94,9 +94,9 @@ public class PlayService {
         else
         {
             scoreService.calcFinalScore(name, score);
-            System.out.println(blue + name +", hope you had a great time. " +
+            System.out.println(yellow + "Hope you had a great time. " +
                     "Thanks for playing QuizApp by Blaze Warriors!!!" + reset);
-            System.out.println(cyan  +"**********************************************************" +
+            System.out.println(cyan + "**********************************************************" +
                     "*****************" + reset);
         }
 
