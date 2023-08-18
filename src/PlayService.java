@@ -17,6 +17,8 @@ public class PlayService {
     String easy = QuizApp.quizLevels[0];
     String medium = QuizApp.quizLevels[1];
     String difficult = QuizApp.quizLevels[2];
+
+    boolean timeOver = false;
     String status;
 
     {
@@ -107,53 +109,56 @@ public class PlayService {
         int i=0;
         int noOfSkippedQuestion = 0;
         int noOfTimedOutQuestion = 0;
-        System.out.println(purple + "Time Limit is set for each Question is: 10sec" + reset);
+        System.out.println(purple + "Time Limit is set for each Question is: 7sec" + reset);
 
-            for(Questions q : easyQuestions)
+        for(Questions q : easyQuestions)
+        {
+            System.out.println("---------------------------------------------");
+            Timer timer = new Timer();
+            timeOver = false;
+            long startTime = System.currentTimeMillis();
+            setTimer(timer);
+
+            System.out.println(purple + "Question " + (i+1) + " : " + reset);
+            System.out.println(q.getQuestion());
+            System.out.println(q.getOpt1());
+            System.out.println(q.getOpt2());
+            System.out.println(q.getOpt3());
+            System.out.println(q.getOpt4());
+
+            System.out.println( "Do you want to skip the Question: " + yellow + "Y/N" + reset);
+            Scanner sc = new Scanner(System.in);
+            String skip = sc.nextLine().trim();
+
+            if(skip.equalsIgnoreCase("n"))
             {
-                System.out.println("---------------------------------------------");
-                long startTime = System.currentTimeMillis();
-                System.out.println(purple + "Question " + (i+1) + " : " + reset);
-                System.out.println(q.getQuestion());
-                System.out.println(q.getOpt1());
-                System.out.println(q.getOpt2());
-                System.out.println(q.getOpt3());
-                System.out.println(q.getOpt4());
+                System.out.println(blue + "Enter the right answer:" + reset);
+                String answer = sc.nextLine().trim();
+                long totalTime = calcTime(startTime);
 
-                System.out.println( "Do you want to skip the Question: " + yellow + "Y/N" + reset);
-                Scanner sc = new Scanner(System.in);
-                String skip = sc.nextLine().trim();
-
-                if(skip.equalsIgnoreCase("n"))
+                if(!timeOver)
                 {
-                    System.out.println(blue + "Enter the right answer:" + reset);
-                    String answer = sc.nextLine().trim();
-
-                    long endTime = System.currentTimeMillis();
-                    long finalTimeInMs = (endTime- startTime);
-                    long finalTimeInSec = (finalTimeInMs/1000)%60;
-
-                    if(finalTimeInSec <= 10)
-                    {
-                        score = scoreService.calcRealScoreEasy(q.getId(), answer, easy, score);
-                        System.out.println(yellow + "Your current score is:" +
-                                score.getEasyScore() + reset);
-                    }
-                    else
-                    {
-                        noOfTimedOutQuestion++;
-                        score.setTimedOutQuestsEasy(noOfTimedOutQuestion);
-                        System.out.println(purple + "Sorry,time out. " +
-                                "Time taken to answer this Question is: "+  finalTimeInSec  +"s" + reset);
-                    }
+                    score = scoreService.calcRealScoreEasy(q.getId(), answer, easy, score);
+                    System.out.println(yellow + "Your current score is:" +
+                            score.getEasyScore() + reset);
                 }
                 else
                 {
-                    noOfSkippedQuestion++;
-                    score.setSkippedQuestsEasy(noOfSkippedQuestion);
+                    noOfTimedOutQuestion++;
+                    score.setTimedOutQuestsEasy(noOfTimedOutQuestion);
+                    System.out.println(purple + "Sorry,time out. " +
+                            "Time taken to answer this Question is: "+  totalTime  +"s" + reset);
                 }
-                i++;
             }
+            else
+            {
+                noOfSkippedQuestion++;
+                score.setSkippedQuestsEasy(noOfSkippedQuestion);
+            }
+            i++;
+            timer.cancel();
+        }
+
     }
 
     private void playMedQuiz(Questions[] mediumQuestions)
@@ -161,52 +166,54 @@ public class PlayService {
         int i=0;
         int noOfSkippedQuestion = 0;
         int noOfTimedOutQuestion = 0;
-        System.out.println(purple + "Time Limit is set for each Question is: 10sec" + reset);
+        System.out.println(purple + "Time Limit is set for each Question is: 7sec" + reset);
 
-            for(Questions q : mediumQuestions)
+        for(Questions q : mediumQuestions)
+        {
+            System.out.println("---------------------------------------------");
+            Timer timer = new Timer();
+            timeOver = false;
+            long startTime = System.currentTimeMillis();
+            setTimer(timer);
+
+            System.out.println(purple + "Question " + (i+1) + " : " + reset);
+            System.out.println(q.getQuestion());
+            System.out.println(q.getOpt1());
+            System.out.println(q.getOpt2());
+            System.out.println(q.getOpt3());
+            System.out.println(q.getOpt4());
+
+            System.out.println( "Do you want to skip the Question: " +yellow + "Y/N" + reset);
+            Scanner sc = new Scanner(System.in);
+            String skip = sc.nextLine().trim();
+
+            if(skip.equalsIgnoreCase("n"))
             {
-                System.out.println("---------------------------------------------");
-                long startTime = System.currentTimeMillis();
-                System.out.println(purple + "Question " + (i+1) + " : " + reset);
-                System.out.println(q.getQuestion());
-                System.out.println(q.getOpt1());
-                System.out.println(q.getOpt2());
-                System.out.println(q.getOpt3());
-                System.out.println(q.getOpt4());
+                System.out.println(blue + "Enter the right answer:" + reset);
+                String answer = sc.nextLine().trim();
+                long totalTime = calcTime(startTime);
 
-                System.out.println( "Do you want to skip the Question: " +yellow + "Y/N" + reset);
-                Scanner sc = new Scanner(System.in);
-                String skip = sc.nextLine().trim();
-
-                if(skip.equalsIgnoreCase("n"))
+                if(!timeOver)
                 {
-                    System.out.println(blue + "Enter the right answer:" + reset);
-                    String answer = sc.nextLine().trim();
-
-                    long endTime = System.currentTimeMillis();
-                    long finalTimeInMs = (endTime- startTime);
-                    long finalTimeInSec = (finalTimeInMs/1000)%60;
-
-                    if(finalTimeInSec <= 10)
-                    {
-                        score = scoreService.calcRealScoreMed(q.getId(), answer, medium, score);
-                        System.out.println(yellow + "Your current score is:" + score.getMedScore() + reset);
-                    }
-                    else
-                    {
-                        noOfTimedOutQuestion++;
-                        score.setTimedOutQuestsMed(noOfTimedOutQuestion);
-                        System.out.println(purple + "Sorry,time out. " +
-                                "Time taken to answer this Question is: "+ finalTimeInSec +"s" +reset);
-                    }
+                    score = scoreService.calcRealScoreMed(q.getId(), answer, medium, score);
+                    System.out.println(yellow + "Your current score is:" + score.getMedScore() + reset);
                 }
                 else
                 {
-                    noOfSkippedQuestion++;
-                    score.setSkippedQuestsMed(noOfSkippedQuestion);
+                    noOfTimedOutQuestion++;
+                    score.setTimedOutQuestsMed(noOfTimedOutQuestion);
+                    System.out.println(purple + "Sorry,time out. " +
+                            "Time taken to answer this Question is: "+ totalTime +"s" +reset);
                 }
-                i++;
             }
+            else
+            {
+                noOfSkippedQuestion++;
+                score.setSkippedQuestsMed(noOfSkippedQuestion);
+            }
+            i++;
+            timer.cancel();
+        }
     }
 
     private void playDiffQuiz(Questions[] difficultQuestions)
@@ -219,7 +226,11 @@ public class PlayService {
         for(Questions q : difficultQuestions)
         {
             System.out.println("---------------------------------------------");
+            Timer timer = new Timer();
+            timeOver = false;
             long startTime = System.currentTimeMillis();
+            setTimer(timer);
+
             System.out.println(purple + "Question " + (i+1) + " : " + reset);
             System.out.println(q.getQuestion());
             System.out.println(q.getOpt1());
@@ -236,11 +247,9 @@ public class PlayService {
                 System.out.println(blue + "Enter the right answer:" + reset);
                 String answer = sc.nextLine().trim();
 
-                long endTime = System.currentTimeMillis();
-                long finalTimeInMs = (endTime- startTime);
-                long finalTimeInSec = (finalTimeInMs/1000)%60;
+                long totalTime = calcTime(startTime);
 
-                if(finalTimeInSec <= 10)
+                if(!timeOver)
                 {
                     score = scoreService.calcRealScoreDiff(q.getId(), answer, difficult, score);
                     System.out.println(yellow + "Your current score is:" + score.getDiffScore() + reset);
@@ -250,7 +259,7 @@ public class PlayService {
                     noOfTimedOutQuestion++;
                     score.setTimedOutQuestsDiff(noOfTimedOutQuestion);
                     System.out.println(purple + "Sorry,time out. " +
-                            "Time taken to answer this Question is: "+ finalTimeInSec +"s" + reset);
+                            "Time taken to answer this Question is: "+ totalTime +"s" + reset);
                 }
             }
             else
@@ -259,6 +268,7 @@ public class PlayService {
                 score.setSkippedQuestsDiff(noOfSkippedQuestion);
             }
             i++;
+            timer.cancel();
         }
     }
 
@@ -284,6 +294,22 @@ public class PlayService {
             shuffledQuests[i] = randomElement;
         }
         return shuffledQuests;
+    }
+
+    private void setTimer(Timer timer) {
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                timeOver = true;
+            }
+        }, 7000);
+    }
+
+    private long calcTime(long startTime)
+    {
+        long endTime = System.currentTimeMillis();
+        long finalTimeInMs = (endTime- startTime);
+        return (finalTimeInMs/1000)%60;
     }
 
     private void summaryOfEasyQuiz()
