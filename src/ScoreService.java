@@ -53,7 +53,11 @@ public class ScoreService {
            }
             catch (IllegalArgumentException illegalArgExc)
             {
+                easyWrongAnswers++;
+                score.setWrongAnsEasy(easyWrongAnswers);
+
                 System.out.println(red + illegalArgExc.getMessage() + reset);
+                System.out.println(green + "Correct Answer is: " + actualCorrectAns + reset);
             }
         }
 
@@ -97,7 +101,11 @@ public class ScoreService {
             }
             catch (IllegalArgumentException illegalArgExc)
             {
+                medWrongAnswers++;
+                score.setWrongAnsMed(medWrongAnswers);
+
                 System.out.println(red + illegalArgExc.getMessage() + reset);
+                System.out.println(green + "Correct Answer is: " + actualCorrectAns + reset);
             }
         }
 
@@ -140,7 +148,11 @@ public class ScoreService {
             }
             catch (IllegalArgumentException illegalArgExc)
             {
+                diffWrongAnswers++;
+                score.setWrongAnsDiff(diffWrongAnswers);
+
                 System.out.println(red + illegalArgExc.getMessage() + reset);
+                System.out.println(green + "Correct Answer is: " + actualCorrectAns + reset);
             }
         }
 
@@ -165,7 +177,7 @@ public class ScoreService {
     public void calcFinalScore(String name, Score score)
     {
         System.out.println(cyan + "**************************************************************************");
-        System.out.println(blue + "Summary of the all levels of Quiz you played");
+        System.out.println(blue + "Summary of the all levels of Quiz you played:");
         int finalScore = score.getEasyScore() + score.getMedScore() + score.getDiffScore();
 
         if(student.isEasyPlayed() && student.isMedPlayed() && student.isDiffPlayed())
@@ -174,7 +186,7 @@ public class ScoreService {
                     score.getSkippedQuestsMed() == 0 && score.getSkippedQuestsDiff()== 0)
             {
                 System.out.println(yellow + name + ", you have answered all questions correctly. " +
-                        "Total Score is " + finalScore + "/30" + reset);
+                        "Total Score is " + finalScore + "/30." + reset);
                 System.out.println(green + "You have successfully completed all levels of Quiz.");
                 System.out.println(purple + "Congratulations!!! you are awarded by Blaze Warrior!!" + reset);
             }
